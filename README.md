@@ -1,5 +1,5 @@
 # LoveCalculator
-#### -Moxy
-#### -Hilt
-#### -Retrofit
-#### -SafeArgs
+#### -Moxy MVP
+#### -Hilt DI
+#### -Retrofit REST
+#### -SafeArgs NAVIIGATION

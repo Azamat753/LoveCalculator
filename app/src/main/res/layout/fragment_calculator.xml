@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    tools:context=".fragment.CalculatorFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="love_machine.json"
+        app:lottie_loop="true" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_marginTop="12dp"
+        app:boxBackgroundColor="@android:color/holo_purple"
+        app:boxStrokeWidth="2dp"
+        android:hint="Name"
+        android:background="@android:color/darker_gray"
+        app:boxCornerRadiusBottomEnd="16dp"
+        app:boxStrokeColor="@android:color/holo_purple">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/male_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First name"
+            android:inputType="textPersonName|textCapWords"
+            android:textColor="@android:color/black"
+            tools:text="Имя" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="12dp"
+        app:boxBackgroundColor="@android:color/holo_purple"
+        app:boxStrokeColor="@android:color/holo_purple">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/female_ed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Second name"
+            android:inputType="textPersonName|textCapWords"
+            android:textColor="@color/black"
+            tools:text="Имя" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/calculate_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/holo_purple"
+        android:text="Calculate"
+        android:textSize="24sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+</LinearLayout>

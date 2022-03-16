@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/calculatorFragment">
+    app:startDestination="@id/boardFragment">
 
     <fragment
         android:id="@+id/calculatorFragment"
@@ -24,6 +24,12 @@
             android:name="loveModel"
             app:argType="com.lawlett.lovecalculator.data.LoveCalculatorModel" />
     </fragment>
+
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.lawlett.lovecalculator.fragment.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" />
 
 
 </navigation>

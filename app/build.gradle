@@ -73,6 +73,12 @@ dependencies {
     implementation 'com.redmadrobot.extensions:viewbinding-ktx:4.1.2-2'
     //lottie
     implementation 'com.airbnb.android:lottie:5.0.3'
+    //dotsindicator
+    implementation 'com.tbuonomo:dotsindicator:4.2'
+    //Coil
+    implementation "io.coil-kt:coil:1.4.0"
+    //dataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 
 
 }

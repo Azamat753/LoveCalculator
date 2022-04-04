@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
-    app:startDestination="@id/boardFragment">
+    app:startDestination="@id/calculatorFragment">
 
     <fragment
         android:id="@+id/calculatorFragment"
@@ -20,16 +20,51 @@
         android:name="com.lawlett.lovecalculator.fragment.ResultFragment"
         android:label="fragment_result"
         tools:layout="@layout/fragment_result">
+
         <argument
-            android:name="loveModel"
-            app:argType="com.lawlett.lovecalculator.data.LoveCalculatorModel" />
+            android:name="model"
+            app:argType="com.lawlett.lovecalculator.data.LoveCalculatorModel"
+            />
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_resultFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+        <action
+            android:id="@+id/action_resultFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/boardFragment"
         android:name="com.lawlett.lovecalculator.fragment.BoardFragment"
         android:label="fragment_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board">
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_boardFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.lawlett.lovecalculator.fragment.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start">
+        <action
+            android:id="@+id/action_startFragment_to_boardFragment"
+            app:destination="@id/boardFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.lawlett.lovecalculator.fragment.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history" />
 
 
 </navigation>

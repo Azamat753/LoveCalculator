@@ -6,10 +6,12 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LoveCalculatorModel(
-    @SerializedName("sname")
-    val femaleName: String,
     @SerializedName("fname")
+    val femaleName: String,
+    @SerializedName("sname")
     val maleName: String,
-    val percentage: Int,
+    @SerializedName("percentage")
+    val percentage: String,
+    @SerializedName("result")
     val result: String
 ) : Parcelable

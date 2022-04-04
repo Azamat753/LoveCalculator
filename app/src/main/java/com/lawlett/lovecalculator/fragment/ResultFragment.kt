@@ -1,35 +1,42 @@
 package com.lawlett.lovecalculator.fragment
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lawlett.lovecalculator.R
 import com.lawlett.lovecalculator.base.BaseFragment
 import com.lawlett.lovecalculator.databinding.FragmentResultBinding
 import com.redmadrobot.extensions.viewbinding.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultFragment : BaseFragment(R.layout.fragment_result) {
 
     private val binding: FragmentResultBinding by viewBinding()
     private val args: ResultFragmentArgs by navArgs()
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setupUI()
-    }
+
 
     private fun setupUI() {
+        val present = args.model.percentage + "%"
         with(binding) {
-            maleTv.text = args.loveModel.maleName
-            femaleTv.text = args.loveModel.femaleName
-            scoreTv.text = args.loveModel.percentage.toString()
-            resultTv.text = args.loveModel.result
+            txtFirst.text = args.model.femaleName
+            txtSecond.text = args.model.maleName
+            txtResult.text = present
+            txtScore.text = args.model.result
         }
     }
 
     override fun initClickers() {
-        binding.tryAgain.setOnClickListener {
-            findNavController().navigate(R.id.calculatorFragment)
+        setupUI()
+        initBtn()
+    }
+
+
+    private fun initBtn() {
+        binding.btnTryAgain.setOnClickListener {
+            findNavController().navigate(R.id.action_resultFragment_to_calculatorFragment)
+        }
+        binding.openHistory.setOnClickListener {
+            findNavController().navigate(R.id.action_resultFragment_to_historyFragment)
         }
     }
 }

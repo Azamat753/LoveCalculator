@@ -1,70 +1,58 @@
 package com.lawlett.lovecalculator.fragment
 
-import android.content.Context
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
-import androidx.datastore.preferences.preferencesDataStore
-import com.lawlett.lovecalculator.PagerListener
-import com.lawlett.lovecalculator.R
-import com.lawlett.lovecalculator.ViewPagerAdapter
+import androidx.activity.OnBackPressedCallback
+import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
+import com.lawlett.lovecalculator.*
+import com.lawlett.lovecalculator.adapter.ViewPagerAdapter
 import com.lawlett.lovecalculator.base.BaseFragment
-import com.lawlett.lovecalculator.data.AppPreferences
 import com.lawlett.lovecalculator.data.BoardModel
 import com.lawlett.lovecalculator.databinding.FragmentBoardBinding
+import com.lawlett.lovecalculator.utils.Pref
 import com.redmadrobot.extensions.viewbinding.viewBinding
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import okio.IOException
-import java.util.concurrent.Flow
-import java.util.prefs.Preferences
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-
-class BoardFragment : BaseFragment(R.layout.fragment_board), PagerListener {
+@AndroidEntryPoint
+class BoardFragment : BaseFragment(R.layout.fragment_board) {
     private val binding: FragmentBoardBinding by viewBinding()
-    private val adapter = ViewPagerAdapter(this)
-    val Context.dataStore by preferencesDataStore(name = "settings")
-    val IS_SHOW_BOARD = booleanPreferencesKey("is_board_show")
+    private val adapter = ViewPagerAdapter()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initAdapter()
+    @Inject
+    lateinit var pref: Pref
 
+
+    private fun initPopBackStack() {
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() = requireActivity().finish()
+            })
     }
 
-    val isShowPreferencesFlow =
-        requireContext().dataStore.data.catch { exception ->
-            if (exception is IOException) {
-                emit(emptyPreferences())
-            } else {
-                throw exception
-            }
-        }.map { preferences ->
-            val isShow = preferences[IS_SHOW_BOARD] ?: false
-            AppPreferences(isShow)
-        }
-
-    override fun onStartClick() {
-        val isShowFlow = requireContext().dataStore.data.map { preferences ->
-            preferences[IS_SHOW_BOARD] ?: false
-        }
-    }
-
-    suspend fun changeValue(isShow: Boolean) {
-        requireContext().dataStore.edit { preferences ->
-            preferences[IS_SHOW_BOARD] = isShow
-        }
-    }
 
     override fun initClickers() {
+        initPopBackStack()
+        initAdapter()
+        initPagerListener()
+        initBtn()
+    }
 
+    private fun initBtn() {
+        binding.btnTry.setOnClickListener {
+            findNavController().navigate(R.id.action_boardFragment_to_calculatorFragment)
+            pref.saveStateBoard()
+        }
+    }
+
+    private fun initPagerListener() {
+        binding.pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position == getBoardList().size - 1) binding.btnTry.visible()
+                else binding.btnTry.gone()
+            }
+        })
     }
 
     private fun initAdapter() {
@@ -75,14 +63,6 @@ class BoardFragment : BaseFragment(R.layout.fragment_board), PagerListener {
 
     private fun getBoardList(): ArrayList<BoardModel> {
         val list: ArrayList<BoardModel> = arrayListOf()
-        list.add(
-            BoardModel(
-                R.drawable.board1,
-                R.drawable.back1,
-                "love calculator",
-                "Find out the compatibility of your names.\n"
-            )
-        )
         list.add(
             BoardModel(
                 R.drawable.board2,

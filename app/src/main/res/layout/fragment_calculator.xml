@@ -4,20 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="12dp"
+    android:background="@drawable/back5"
     tools:context=".fragment.CalculatorFragment">
 
     <ImageView
-        android:layout_width="300dp"
-        android:layout_height="276dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:src="@drawable/board5" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="sans-serif-condensed-medium"
+        android:text="love calculator"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="26dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="Enter names to check \n compatibility."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="22sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_marginTop="12dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="26dp"
+        android:background="@drawable/bg_edit">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/male_ed"
@@ -26,15 +48,17 @@
             android:hint="First name"
             android:inputType="textPersonName|textCapWords"
             android:textColor="@android:color/black"
+            android:textColorHint="@color/black"
             tools:text="Имя" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
-        android:background="@color/white">
+        android:background="@drawable/bg_edit">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/female_ed"
@@ -43,6 +67,7 @@
             android:hint="Second name"
             android:inputType="textPersonName|textCapWords"
             android:textColor="@color/black"
+            android:textColorHint="@color/black"
             tools:text="Имя" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -51,9 +76,10 @@
         android:id="@+id/calculate_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="12dp"
-        android:background="@android:color/holo_purple"
+        android:layout_marginStart="86dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="77dp"
+        android:background="@drawable/bg_try"
         android:text="Calculate"
         android:textSize="24sp" />
 

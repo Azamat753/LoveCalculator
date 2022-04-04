@@ -1,18 +1,19 @@
 package com.lawlett.lovecalculator.fragment
 
-import android.os.Bundle
-import android.view.View
+import android.util.Log
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.lawlett.lovecalculator.data.LoveCalculatorModel
-import com.lawlett.lovecalculator.LovePresenter
-import com.lawlett.lovecalculator.LoveView
+import com.lawlett.lovecalculator.presenter.LovePresenter
+import com.lawlett.lovecalculator.presenter.view.LoveView
 import com.lawlett.lovecalculator.R
 import com.lawlett.lovecalculator.base.BaseFragment
 import com.lawlett.lovecalculator.databinding.FragmentCalculatorBinding
 import com.redmadrobot.extensions.viewbinding.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import javax.inject.Inject
@@ -33,34 +34,50 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
         return hiltPresenter
     }
 
-    private var female: String = ""
-    private var male: String = ""
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initClickers()
-    }
 
     override fun initClickers() {
+        initBtn()
+    }
+
+    private fun initBtn() {
         binding.calculateBtn.setOnClickListener {
-            female = binding.femaleEd.text.toString()
-            male = binding.maleEd.text.toString()
-            presenter.getPercentage(female, male)
+            val female = binding.femaleEd.text.toString()
+            val male = binding.maleEd.text.toString()
+            checkData(female, male)
         }
     }
 
+    private fun checkData(female: String, male: String) {
+        if (female.isBlank() && male.isBlank()) {
+            binding.femaleEd.error = "Пусто"
+            binding.maleEd.error = "Пусто"
+        } else if (male.isBlank())
+            binding.maleEd.error = "Пусто"
+        else if (female.isBlank())
+            binding.femaleEd.error = "Пусто"
+        else {
+            lifecycleScope.launch {
+                presenter.getPercentage(female, male)
+            }
+        }
+
+    }
+
+
     override fun showResult(loveModel: LoveCalculatorModel) {
+        Log.e("ABOBA", "lOL")
         val action =
             CalculatorFragmentDirections.actionCalculatorFragmentToResultFragment(loveModel)
         findNavController().navigate(action)
     }
 
     override fun showLoading() {
+        Log.e("ABOBA", "Show")
         binding.progressBar.isVisible = true
     }
 
     override fun closeLoading() {
+        Log.e("ABOBA", "Close")
         binding.progressBar.isGone = true
     }
 }

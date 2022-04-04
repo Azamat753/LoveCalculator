@@ -1,4 +1,4 @@
-package com.lawlett.lovecalculator
+package com.lawlett.lovecalculator.presenter.view
 
 import com.lawlett.lovecalculator.data.LoveCalculatorModel
 import moxy.MvpView

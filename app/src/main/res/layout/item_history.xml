@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginHorizontal="28dp"
+    android:layout_marginTop="32dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_item_history">
+
+        <TextView
+            android:id="@+id/item_txt_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="18dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/item_txt_second_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_txt_first_name"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/item_txt_present"
+            android:textColor="@color/black"
+            android:fontFamily="sans-serif-black"
+            android:textSize="20sp"
+            android:layout_marginEnd="32dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

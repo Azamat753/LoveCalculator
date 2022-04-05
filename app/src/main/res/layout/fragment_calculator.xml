@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -35,16 +36,18 @@
         android:textSize="22sp" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/male_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="26dp"
         android:background="@drawable/bg_edit"
         android:hint="First name"
-        android:textColorHint="#E5EBFF">
+        android:textColorHint="#E5EBFF"
+        app:errorTextAppearance="@style/error_appearance">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/male_ed"
+            android:id="@+id/edit_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black" />
@@ -52,16 +55,18 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/female_ed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="12dp"
         android:background="@drawable/bg_edit"
         android:hint="Second name"
-        android:textColorHint="#E5EBFF">
+        android:textColorHint="#E5EBFF"
+        app:errorTextAppearance="@style/error_appearance">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/female_ed"
+            android:id="@+id/edit_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black" />

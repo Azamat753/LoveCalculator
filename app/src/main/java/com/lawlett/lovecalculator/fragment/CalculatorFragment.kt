@@ -1,6 +1,5 @@
 package com.lawlett.lovecalculator.fragment
 
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -46,14 +45,13 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
             override fun handleOnBackPressed() {
                 requireActivity().finish()
             }
-
         })
     }
 
     private fun initBtn() {
         binding.calculateBtn.setOnClickListener {
-            val female = binding.femaleEd.text.toString()
-            val male = binding.maleEd.text.toString()
+            val female = binding.editFirst.text.toString()
+            val male = binding.editSecond.text.toString()
             checkData(female, male)
         }
     }
@@ -62,37 +60,29 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
         if (female.isBlank() && male.isBlank()) {
             binding.femaleEd.error = "Пусто"
             binding.maleEd.error = "Пусто"
-            binding.femaleEd.requestFocus()
-            binding.maleEd.requestFocus()
         } else if (male.isBlank()) {
             binding.maleEd.error = "Пусто"
-            binding.maleEd.requestFocus()
         } else if (female.isBlank()) {
-            binding.femaleEd.requestFocus()
             binding.femaleEd.error = "Пусто"
         } else {
             lifecycleScope.launch {
                 presenter.getPercentage(female, male)
             }
         }
-
     }
 
 
     override fun showResult(loveModel: LoveCalculatorModel) {
-        Log.e("ABOBA", "lOL")
         val action =
             CalculatorFragmentDirections.actionCalculatorFragmentToResultFragment(loveModel)
         findNavController().navigate(action)
     }
 
     override fun showLoading() {
-        Log.e("ABOBA", "Show")
         binding.progressBar.isVisible = true
     }
 
     override fun closeLoading() {
-        Log.e("ABOBA", "Close")
         binding.progressBar.isGone = true
     }
 }

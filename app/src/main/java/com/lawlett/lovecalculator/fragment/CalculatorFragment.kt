@@ -1,5 +1,7 @@
 package com.lawlett.lovecalculator.fragment
 
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -38,6 +40,39 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
     override fun initClickers() {
         initPopBackStack()
         initBtn()
+        initEditListener()
+    }
+
+    private fun initEditListener() {
+        binding.editFirst.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (binding.editFirst.text.isNotBlank())
+                    binding.femaleEd.isErrorEnabled = false
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+            }
+
+        })
+        binding.editSecond.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (binding.editSecond.text.isNotBlank())
+                    binding.maleEd.isErrorEnabled = false
+            }
+
+            override fun afterTextChanged(p0: Editable?) {
+
+            }
+
+        })
     }
 
     private fun initPopBackStack() {
@@ -62,9 +97,13 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
             binding.maleEd.error = "Пусто"
         } else if (male.isBlank()) {
             binding.maleEd.error = "Пусто"
+            binding.femaleEd.isErrorEnabled = false
         } else if (female.isBlank()) {
             binding.femaleEd.error = "Пусто"
+            binding.maleEd.isErrorEnabled = false
         } else {
+            binding.femaleEd.isErrorEnabled = false
+            binding.maleEd.isErrorEnabled = false
             lifecycleScope.launch {
                 presenter.getPercentage(female, male)
             }

@@ -7,12 +7,12 @@ import com.lawlett.lovecalculator.data.LoveModel
 import com.lawlett.lovecalculator.databinding.ItemHistoryBinding
 
 class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
-    private var list: List<LoveModel> = arrayListOf()
+    private var list: List<LoveModel> = ArrayList()
 
     inner class HistoryViewHolder(private val binding: ItemHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(model: LoveModel) {
-            val present = model.present+ "%"
+            val present = model.present + "%"
             binding.itemTxtFirstName.text = model.female
             binding.itemTxtSecondName.text = model.male
             binding.itemTxtPresent.text = present

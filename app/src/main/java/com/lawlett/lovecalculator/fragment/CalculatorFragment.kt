@@ -1,6 +1,7 @@
 package com.lawlett.lovecalculator.fragment
 
 import android.util.Log
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
@@ -36,7 +37,17 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
 
 
     override fun initClickers() {
+        initPopBackStack()
         initBtn()
+    }
+
+    private fun initPopBackStack() {
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                requireActivity().finish()
+            }
+
+        })
     }
 
     private fun initBtn() {
@@ -51,11 +62,15 @@ class CalculatorFragment : BaseFragment(R.layout.fragment_calculator), LoveView 
         if (female.isBlank() && male.isBlank()) {
             binding.femaleEd.error = "Пусто"
             binding.maleEd.error = "Пусто"
-        } else if (male.isBlank())
+            binding.femaleEd.requestFocus()
+            binding.maleEd.requestFocus()
+        } else if (male.isBlank()) {
             binding.maleEd.error = "Пусто"
-        else if (female.isBlank())
+            binding.maleEd.requestFocus()
+        } else if (female.isBlank()) {
+            binding.femaleEd.requestFocus()
             binding.femaleEd.error = "Пусто"
-        else {
+        } else {
             lifecycleScope.launch {
                 presenter.getPercentage(female, male)
             }

@@ -1,6 +1,8 @@
 package com.lawlett.lovecalculator.fragment
 
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.lawlett.lovecalculator.adapter.HistoryAdapter
 import com.lawlett.lovecalculator.R
 import com.lawlett.lovecalculator.base.BaseFragment
@@ -16,6 +18,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import java.util.ArrayList
 import javax.inject.Inject
+
 @AndroidEntryPoint
 class HistoryFragment : BaseFragment(R.layout.fragment_history), HistoryView {
     private val binding: FragmentHistoryBinding by viewBinding()
@@ -35,6 +38,16 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history), HistoryView {
     override fun initClickers() {
         setupUi()
         initRoom()
+        initPopBackStack()
+    }
+
+    private fun initPopBackStack() {
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_historyFragment_to_calculatorFragment)
+            }
+
+        })
     }
 
     private fun initRoom() {

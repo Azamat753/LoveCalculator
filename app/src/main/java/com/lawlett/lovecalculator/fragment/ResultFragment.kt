@@ -1,5 +1,6 @@
 package com.lawlett.lovecalculator.fragment
 
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lawlett.lovecalculator.R
@@ -26,8 +27,18 @@ class ResultFragment : BaseFragment(R.layout.fragment_result) {
     }
 
     override fun initClickers() {
+        initPopBackStack()
         setupUI()
         initBtn()
+    }
+
+    private fun initPopBackStack() {
+        requireActivity().onBackPressedDispatcher.addCallback(object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                findNavController().navigate(R.id.action_resultFragment_to_calculatorFragment)
+            }
+
+        })
     }
 
 

@@ -64,7 +64,15 @@
         android:id="@+id/historyFragment"
         android:name="com.lawlett.lovecalculator.fragment.HistoryFragment"
         android:label="fragment_history"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_history" >
+
+        <action
+            app:launchSingleTop="true"
+            app:popUpTo="@id/nav_graph.xml"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_historyFragment_to_calculatorFragment"
+            app:destination="@id/calculatorFragment" />
+    </fragment>
 
 
 </navigation>

@@ -13,6 +13,8 @@
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/drawable/ic_heart.xml" value="0.168" />
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/drawable/ic_history.xml" value="0.1975" />
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-h1000dp/fragment_result.xml" value="0.1875" />
+        <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-h700dp/fragment_result.xml" value="0.25" />
+        <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-h800dp/fragment_result.xml" value="0.20521590423257802" />
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-large/fragment_result.xml" value="0.1875" />
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-ldpi/fragment_result.xml" value="0.21621621621621623" />
         <entry key="..\:/Code/LoveCalculator/app/src/main/res/layout-normal/fragment_result.xml" value="0.21621621621621623" />
@@ -36,9 +38,6 @@
         <entry key="..\:/Users/99670/AndroidStudioProjects/LoveCalculator/app/src/main/res/layout/item_board.xml" value="0.36666666666666664" />
       </map>
     </option>
-  </component>
-  <component name="ProjectPlainTextFileTypeManager">
-    <file url="file://$PROJECT_DIR$/app/src/main/res/layout-small/fragment_result.xml" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />

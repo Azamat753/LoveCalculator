@@ -13,8 +13,8 @@ class HistoryAdapter : RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() 
         RecyclerView.ViewHolder(binding.root) {
         fun onBind(model: LoveModel) {
             val present = model.present + "%"
-            binding.itemTxtFirstName.text = model.female
-            binding.itemTxtSecondName.text = model.male
+            binding.itemTxtFirstName.text = model.male
+            binding.itemTxtSecondName.text = model.female
             binding.itemTxtPresent.text = present
         }
 

@@ -19,8 +19,8 @@ class ResultFragment : BaseFragment(R.layout.fragment_result) {
     private fun setupUI() {
         val present = args.model.percentage + "%"
         with(binding) {
-            txtFirst.text = args.model.femaleName
-            txtSecond.text = args.model.maleName
+            txtFirst.text = args.model.maleName
+            txtSecond.text = args.model.femaleName
             txtResult.text = present
             txtScore.text = args.model.result
         }

@@ -16,7 +16,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import java.util.ArrayList
+import java.util.*
+import java.util.Collections.reverse
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -62,6 +63,7 @@ class HistoryFragment : BaseFragment(R.layout.fragment_history), HistoryView {
 
 
     override fun showAllList(list: List<LoveModel>) {
+        reverse(list)
         adapter.setData(list)
     }
 
